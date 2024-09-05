@@ -166,6 +166,53 @@ Tendo como resultado
 | Player Active    | 535          |
 
 
+E então sabemos que apensa 12,5% dos jogadores listados ainda estão ativos. 
 
+
+
+## Existe alguma tendência ou concentração de jogador por cidade?
+
+Para ter o resultado acima, foi necessário realizar a seguinte consulta no SQL Server:
+
+
+```sql
+WITH city_count AS (
+    SELECT 
+        COALESCE(player1_team_city, 'Unknown') AS TeamCity,
+        COUNT(DISTINCT player1_id) AS PlayerCount
+    FROM play_by_play
+    GROUP BY TeamCity
+),
+TotalCount AS (
+    SELECT
+        SUM(PlayerCount) AS Total_players
+    FROM city_count
+)
+
+SELECT
+    TeamCity,
+    PlayerCount,
+    ROUND((PlayerCount * 100.0 / Total_players), 2) AS percentage
+FROM city_count, TotalCount
+ORDER BY PlayerCount DESC;
+
+
+
+```
+
+Tendo como resultado da query (apenas os 10 primeiros valores)
+
+| TeamCity         | PlayerCount | Percentage |
+|------------------|-------------|------------|
+| Unknown          | 1133        | 12.01%     |
+| Los Angeles      | 408         | 4.33%      |
+| Cleveland        | 292         | 3.10%      |
+| Philadelphia     | 281         | 2.98%      |
+| Atlanta          | 280         | 2.97%      |
+| Dallas           | 279         | 2.96%      |
+| Toronto          | 276         | 2.93%      |
+| Milwaukee        | 275         | 2.92%      |
+| Golden State     | 273         | 2.89%      |
+| Houston          | 272         | 2.88%      |
 
 
