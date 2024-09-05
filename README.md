@@ -127,34 +127,24 @@ Para responder a está pergunta, utiliza-se a query abaixo
 ```sql
 
 SELECT
+    active AS Player_Status,
+    COUNT(*) AS Status_Count
 
-	active AS Player_Status,
-	COUNT(*) AS [Status_Count]
-
-	
 FROM (
-
-	SELECT
-
-		is_active,
-		full_name,
-		
-		(CASE 
-		
-			WHEN is_active = 1 THEN "Player Active" ELSE "Player Not Active"
-				
-		END) AS active
-
-	FROM player
-
+    SELECT
+	is_active,
+	full_name,
+        (CASE 
+            WHEN is_active = 1 THEN 'Player Active' ELSE 'Player Not Active'
+        END) AS active
+    FROM player
 	ORDER BY
-		is_active DESC
+	    is_active DESC
 
-)
 
-GROUP BY 
-is_active
-	
+) 
+GROUP BY
+    is_active
 
 ```
 
@@ -214,5 +204,52 @@ Tendo como resultado da query (apenas os 10 primeiros valores)
 | Milwaukee        | 275         | 2.92%      |
 | Golden State     | 273         | 2.89%      |
 | Houston          | 272         | 2.88%      |
+
+
+Portanto, vemos que a maior parte dos jogadores concentra-se em cidadaes que não foram especificadas, indicando que talvez será preciso revisão de dados para fins de maior precisão analítica. 
+
+
+## E quanto a concentração de times em relação as cidades? 
+
+
+Podemos obter a resposta com a query:
+
+```sql
+
+SELECT 
+	city, 
+	COUNT(DISTINCT nickname) AS [team_count]
+	
+FROM (
+    SELECT 
+		team_details.nickname, 
+		CAST(yearfounded AS INTEGER) AS year_founded, 
+		team_details.city, 
+		team_details.arenacapacity
+		
+    FROM team_details
+    JOIN team ON team.abbreviation = team_details.abbreviation
+)
+GROUP BY city
+ORDER BY team_count DESC
+
+```
+
+
+E obtemos a seguinte tabela dos 10 primeiros resultados:
+
+
+| City           | Team_Count |
+|----------------|------------|
+| Los Angeles    | 2          |
+| Utah           | 1          |
+| Toronto        | 1          |
+| Sacramento     | 1          |
+| Portland       | 1          |
+| Phoenix        | 1          |
+| Philadelphia   | 1          |
+| Orlando        | 1          |
+| Oklahoma City  | 1          |
+| New York       | 1          |
 
 
