@@ -81,3 +81,31 @@ No início da análise dos dados, focamos em explorar e entender as informaçõe
 ## Jogadores
 
 
+```sql
+
+
+
+
+SELECT	
+
+	person_id,
+	first_name,
+	last_name,
+	team_name,
+	season_exp,
+	height,
+	weight,
+	rosterstatus,
+	from_year,
+	to_year
+	
+FROM common_player_info
+
+WHERE season_exp <> 0
+
+ORDER BY
+	season_exp DESC
+
+```
+
+
