@@ -72,3 +72,12 @@ Contém as mesmas informações da tabela “team”, porém abranja mais detalh
 ### team_history
 
 Contém informações de times, como nome, cidade, apelido e ano de fundação, bem como o ano de desativação.
+
+
+# Analise dos Dados
+
+No início da análise dos dados, focamos em explorar e entender as informações relativas aos jogadores, times e partidas.  A partir daí, implementamos análises mais aprofundadas para investigar padrões e extrair insights que pudessem oferecer uma compreensão mais detalhada do funcionamento da NBA.
+
+## Jogadores
+
+
