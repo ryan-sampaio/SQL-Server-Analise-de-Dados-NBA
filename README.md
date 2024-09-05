@@ -108,4 +108,64 @@ ORDER BY
 
 ```
 
+Resultado da query dos 5 primeiros resultados:
+| person_id | first_name | last_name | team_name   | season_exp | weight | rosterstatus | years_of_experience | from_year | to_year |
+|-----------|------------|-----------|-------------|------------|--------|--------------|----------------------|-----------|---------|
+| 1713      | Vince      | Carter    | Raptors     | 23.0       | 220    | Inactive     | 21.0                 | 1998.0    | 2019.0  |
+| 708       | Kevin      | Garnett   | Timberwolves| 22.0       | 240    | Inactive     | 20.0                 | 1995.0    | 2015.0  |
+| 1717      | Dirk       | Nowitzki  | Mavericks   | 22.0       | 245    | Inactive     | 20.0                 | 1998.0    | 2018.0  |
+| 788       | Kevin      | Willis    | Hawks       | 22.0       | 245    | Inactive     | 22.0                 | 1984.0    | 2006.0  |
+| 305       | Robert     | Parish    | Celtics     | 21.0       | 244    | Inactive     | 20.0                 | 1976.0    | 1996.0  |
+
+A query mostra um total de 3630 linhas, excluindo valores onde a experiencia de temporada é diferente de zero.
+
+## E desses jogadores, quantos estão ativos e inativos?
+
+Para responder a está pergunta, utiliza-se a query abaixo
+
+
+```sql
+
+SELECT
+
+	active AS Player_Status,
+	COUNT(*) AS [Status_Count]
+
+	
+FROM (
+
+	SELECT
+
+		is_active,
+		full_name,
+		
+		(CASE 
+		
+			WHEN is_active = 1 THEN "Player Active" ELSE "Player Not Active"
+				
+		END) AS active
+
+	FROM player
+
+	ORDER BY
+		is_active DESC
+
+)
+
+GROUP BY 
+is_active
+	
+
+```
+
+Tendo como resultado
+
+| Player_Status    | Status_Count |
+|------------------|--------------|
+| Player Not Active| 4280         |
+| Player Active    | 535          |
+
+
+
+
 
