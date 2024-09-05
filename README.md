@@ -252,4 +252,78 @@ E obtemos a seguinte tabela dos 10 primeiros resultados:
 | Oklahoma City  | 1          |
 | New York       | 1          |
 
+Vemos que existe uma distribuição uniforme dos times em relação a cidade, o que nos permite inferir que o esporte está distribuido uniformemente por todo o país.
+
+
+
+## E quanto as vitórias e derrotas de cada time?
+
+Para extrair esta informação podemos utilizar a query seguinte
+```sql
+
+WITH NbaTeamAnalysis AS (
+
+    SELECT
+        game.season_id AS [season],
+        team.full_name AS [team],
+        game.wl_home AS "result",
+        team.year_founded,
+        SUBSTR(game.matchup_home, LENGTH(game.matchup_home) - 2, 3) AS Played_Against
+    FROM game
+    JOIN team ON team.abbreviation = game.team_abbreviation_home
+
+)
+SELECT
+
+    NbaTeamAnalysis.team,
+    COUNT(CASE WHEN result = 'W' THEN 1 END) AS Wins,
+    COUNT(CASE WHEN result = 'L' THEN 1 END) AS Losses,
+    CAST(year_founded AS INTEGER) AS [year_founded]
+	
+FROM NbaTeamAnalysis
+
+GROUP BY team, year_founded
+ORDER BY Wins DESC;
+
+
+```
+
+E obtemos as vitórias e derrotas por cada time ordenado por número de vitória, bem como o ano de fundação
+
+| Team                   | Wins | Losses | Year_Founded |
+|------------------------|------|--------|--------------|
+| Boston Celtics         | 2200 | 923    | 1946         |
+| Los Angeles Lakers     | 1850 | 811    | 1948         |
+| New York Knicks        | 1763 | 1164   | 1946         |
+| Detroit Pistons        | 1522 | 1023   | 1948         |
+| Phoenix Suns           | 1480 | 772    | 1968         |
+| Chicago Bulls          | 1443 | 870    | 1966         |
+| Milwaukee Bucks        | 1425 | 828    | 1968         |
+| Portland Trail Blazers | 1422 | 723    | 1970         |
+| Atlanta Hawks          | 1380 | 837    | 1949         |
+| Houston Rockets        | 1369 | 802    | 1967         |
+| Cleveland Cavaliers    | 1273 | 873    | 1970         |
+| Denver Nuggets         | 1247 | 705    | 1976         |
+| Indiana Pacers         | 1210 | 736    | 1976         |
+| Washington Wizards     | 1195 | 924    | 1961         |
+| Dallas Mavericks       | 1085 | 748    | 1980         |
+| Miami Heat             | 949  | 596    | 1988         |
+| San Antonio Spurs      | 869  | 341    | 1976         |
+| Los Angeles Clippers   | 855  | 781    | 1970         |
+| Sacramento Kings       | 843  | 709    | 1948         |
+| Orlando Magic          | 828  | 599    | 1989         |
+| Utah Jazz              | 786  | 364    | 1974         |
+| Golden State Warriors  | 707  | 454    | 1946         |
+| Minnesota Timberwolves | 682  | 708    | 1989         |
+| Toronto Raptors        | 675  | 512    | 1995         |
+| Philadelphia 76ers     | 630  | 517    | 1949         |
+| Memphis Grizzlies      | 554  | 389    | 1995         |
+| Oklahoma City Thunder  | 405  | 246    | 1967         |
+| Charlotte Hornets      | 379  | 393    | 1988         |
+| Brooklyn Nets          | 229  | 223    | 1976         |
+| New Orleans Pelicans   | 229  | 198    | 2002         |
+
+
+
+
 
