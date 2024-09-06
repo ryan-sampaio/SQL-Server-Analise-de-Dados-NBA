@@ -85,26 +85,25 @@ No início da análise dos dados, focamos em explorar e entender as informaçõe
 
 
 
+SELECT
 
-SELECT	
+    person_id,
+    first_name,
+    last_name,
+    team_name,
+    season_exp,
+    height,
+    weight,
+    rosterstatus,
+    from_year,
+    to_year
 
-	person_id,
-	first_name,
-	last_name,
-	team_name,
-	season_exp,
-	height,
-	weight,
-	rosterstatus,
-	from_year,
-	to_year
-	
 FROM common_player_info
 
 WHERE season_exp <> 0
-
 ORDER BY
-	season_exp DESC
+    season_exp DESC;
+
 
 ```
 
@@ -216,22 +215,25 @@ Podemos obter a resposta com a query:
 
 ```sql
 
-SELECT 
-	city, 
-	COUNT(DISTINCT nickname) AS [team_count]
-	
+SELECT
+
+    city, 
+    COUNT(DISTINCT nickname) AS [team_count]
+
 FROM (
     SELECT 
-		team_details.nickname, 
-		CAST(yearfounded AS INTEGER) AS year_founded, 
-		team_details.city, 
-		team_details.arenacapacity
-		
+        team_details.nickname, 
+        CAST(yearfounded AS INTEGER) AS year_founded, 
+        team_details.city, 
+        team_details.arenacapacity
     FROM team_details
     JOIN team ON team.abbreviation = team_details.abbreviation
 )
+
 GROUP BY city
-ORDER BY team_count DESC
+ORDER BY
+    team_count DESC;
+
 
 ```
 
