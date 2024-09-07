@@ -374,20 +374,16 @@ LIMIT 5
 
 Dentre todos os jogadores que estão ativo, distribuidos entre os times, os cinco maiores times são Clippers, Bucks, Mavericks, Head e Warriors.
 
-# Conclusão
+# Insights
 
-ApresentaçãoNBA
-
-
-(ApresentacaoNBA/Slide1.JPG)
+![image alt](https://github.com/ryan-sampaio/SQL-Server-Analise-de-Dados-NBA/blob/main/ApresentacaoNBA/Slide1.JPG?raw=true)
 
 
-(ApresentacaoNBA/Slide2.JPG)
+![image alt](https://github.com/ryan-sampaio/SQL-Server-Analise-de-Dados-NBA/blob/main/ApresentacaoNBA/Slide2.JPG?raw=true)
 
+![image alt](https://github.com/ryan-sampaio/SQL-Server-Analise-de-Dados-NBA/blob/main/ApresentacaoNBA/Slide3.JPG?raw=true)
 
-(ApresentacaoNBA/Slide3.JPG)
-
-(ApresentacaoNBA/Slide4.JPG)
+![image alt](https://github.com/ryan-sampaio/SQL-Server-Analise-de-Dados-NBA/blob/main/ApresentacaoNBA/Slide4.JPG?raw=true)
 
 
 
