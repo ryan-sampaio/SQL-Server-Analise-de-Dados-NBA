@@ -1,0 +1,19 @@
+WITH city_count AS (
+    SELECT 
+        COALESCE(player1_team_city, 'Unknown') AS TeamCity,
+        COUNT(DISTINCT player1_id) AS PlayerCount
+    FROM play_by_play
+    GROUP BY TeamCity
+),
+TotalCount AS (
+    SELECT
+        SUM(PlayerCount) AS Total_players
+    FROM city_count
+)
+
+SELECT
+    TeamCity,
+    PlayerCount,
+    ROUND((PlayerCount * 100.0 / Total_players), 2) AS percentage
+FROM city_count, TotalCount
+ORDER BY PlayerCount DESC;

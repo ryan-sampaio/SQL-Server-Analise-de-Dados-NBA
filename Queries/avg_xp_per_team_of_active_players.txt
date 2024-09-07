@@ -1,0 +1,28 @@
+
+
+WITH Players_list AS (
+
+    SELECT
+        common_player_info.person_id,
+        common_player_info.first_name,
+        common_player_info.last_name,
+        common_player_info.birthdate,
+        common_player_info.country,
+        common_player_info.height,
+        common_player_info.weight,
+        common_player_info.season_exp,
+        common_player_info.rosterstatus,
+        common_player_info.team_name
+    FROM common_player_info
+)
+
+SELECT 
+    team_name,
+    ROUND(AVG(season_exp), 2) AS season_xp_average_per_team
+FROM Players_list
+WHERE rosterstatus = 'Active'
+GROUP BY team_name
+ORDER BY 
+    season_xp_average_per_team DESC
+LIMIT 5
+

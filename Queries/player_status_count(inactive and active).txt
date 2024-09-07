@@ -1,0 +1,19 @@
+SELECT
+    active AS Player_Status,
+    COUNT(*) AS Status_Count
+
+FROM (
+    SELECT
+	is_active,
+	full_name,
+        (CASE 
+            WHEN is_active = 1 THEN 'Player Active' ELSE 'Player Not Active'
+        END) AS active
+    FROM player
+	ORDER BY
+	    is_active DESC
+
+
+) 
+GROUP BY
+    is_active

@@ -1,0 +1,25 @@
+
+WITH NbaTeamAnalysis AS (
+
+    SELECT
+        game.season_id AS [season],
+        team.full_name AS [team],
+        game.wl_home AS "result",
+        team.year_founded,
+        SUBSTR(game.matchup_home, LENGTH(game.matchup_home) - 2, 3) AS Played_Against
+    FROM game
+    JOIN team ON team.abbreviation = game.team_abbreviation_home
+
+)
+SELECT
+
+    NbaTeamAnalysis.team,
+    COUNT(CASE WHEN result = 'W' THEN 1 END) AS Wins,
+    COUNT(CASE WHEN result = 'L' THEN 1 END) AS Losses,
+    CAST(year_founded AS INTEGER) AS [year_founded]
+	
+FROM NbaTeamAnalysis
+
+GROUP BY team, year_founded
+ORDER BY Wins DESC;
+

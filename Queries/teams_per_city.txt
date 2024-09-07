@@ -1,0 +1,20 @@
+
+SELECT
+
+    city, 
+    COUNT(DISTINCT nickname) AS [team_count]
+
+FROM (
+    SELECT 
+        team_details.nickname, 
+        CAST(yearfounded AS INTEGER) AS year_founded, 
+        team_details.city, 
+        team_details.arenacapacity
+    FROM team_details
+    JOIN team ON team.abbreviation = team_details.abbreviation
+)
+
+GROUP BY city
+ORDER BY
+    team_count DESC;
+
