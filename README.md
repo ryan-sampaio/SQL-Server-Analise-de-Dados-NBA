@@ -379,17 +379,15 @@ Dentre todos os jogadores que estão ativo, distribuidos entre os times, os cinc
 ApresentaçãoNBA
 
 
-## Slide 1
-[Slide 1](ApresentaçãoNBA/Slide1.jpg)
+(ApresentaçãoNBA/Slide1.jpg)
 
-## Slide 2
-[Slide 2](ApresentaçãoNBA/Slide2.jpg)
 
-## Slide 3
-[Slide 3](ApresentaçãoNBA/Slide3.jpg)
+(ApresentaçãoNBA/Slide2.jpg)
 
-## Slide 4
-[Slide 4](ApresentaçãoNBA/Slide4.jpg)
+
+(ApresentaçãoNBA/Slide3.jpg)
+
+(ApresentaçãoNBA/Slide4.jpg)
 
 
 
