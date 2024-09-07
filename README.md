@@ -374,5 +374,22 @@ LIMIT 5
 
 Dentre todos os jogadores que estão ativo, distribuidos entre os times, os cinco maiores times são Clippers, Bucks, Mavericks, Head e Warriors.
 
+# Conclusão
+
+ApresentaçãoNBA
+
+
+## Slide 1
+[Slide 1](ApresentaçãoNBA/slide1.jpg)
+
+## Slide 2
+[Slide 2](ApresentaçãoNBA/slide2.jpg)
+
+## Slide 3
+[Slide 3](ApresentaçãoNBA/slide3.jpg)
+
+## Slide 4
+[Slide 4](ApresentaçãoNBA/slide4.jpg)
+
 
 
