@@ -327,5 +327,52 @@ E obtemos as vitórias e derrotas por cada time ordenado por número de vitória
 
 
 
+## Na tabela de jogador possui uma métrica de desempnho denominada "experiência por temporada", em inglês season experience. Dos times, quais são os times que estão no top 5 dessa métrica de desempenho?
+
+
+
+```sql
+
+
+WITH Players_list AS (
+
+    SELECT
+        common_player_info.person_id,
+        common_player_info.first_name,
+        common_player_info.last_name,
+        common_player_info.birthdate,
+        common_player_info.country,
+        common_player_info.height,
+        common_player_info.weight,
+        common_player_info.season_exp,
+        common_player_info.rosterstatus,
+        common_player_info.team_name
+    FROM common_player_info
+)
+
+SELECT 
+    team_name,
+    ROUND(AVG(season_exp), 2) AS season_xp_average_per_team
+FROM Players_list
+WHERE rosterstatus = 'Active'
+GROUP BY team_name
+ORDER BY 
+    season_xp_average_per_team DESC
+LIMIT 5
+
+
+```
+
+| Team Name   | Season XP Average Per Team |
+|-------------|----------------------------|
+| Clippers    | 7.77                       |
+| Bucks       | 7.55                       |
+| Mavericks   | 7.00                       |
+| Heat        | 6.93                       |
+| Warriors    | 6.67                       |
+
+
+Dentre todos os jogadores que estão ativo, distribuidos entre os times, os cinco maiores times são Clippers, Bucks, Mavericks, Head e Warriors.
+
 
 
